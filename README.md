@@ -1,5 +1,6 @@
 # djf-danfe
-[![Build Status](https://travis-ci.org/djalmaoliveira/djf-danfe.svg?branch=master)](https://travis-ci.org/djalmaoliveira/djf-danfe)
+[![Build Status](https://travis-ci.org/djalmaoliveira/djf-danfe.svg?branch=master)](https://travis-ci.org/djalmaoliveira/djf-danfe) [![Version](https://img.shields.io/npm/v/djf-danfe.svg)]
+
 Visualizador de DANFE (Documento Auxiliar Da Nota Fiscal Eletrônica) em html.
 
 ## Preparação
