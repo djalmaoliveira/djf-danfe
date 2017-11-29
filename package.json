@@ -1,6 +1,6 @@
 {
   "name": "djf-danfe",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Visualizador DANFE em html",
   "main": "src/index.js",
   "scripts": {
