@@ -26,7 +26,6 @@
   "author": "Djalma Oliveira",
   "license": "MIT",
   "dependencies": {
-    "bulma-dist": "^1.0.0",
     "djf-nfe": "^1.0.1",
     "handlebars": "^4.0.11"
   }

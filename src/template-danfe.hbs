@@ -1,24 +1,128 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=2.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>DANFE</title>
 </head>
 <style>
-{{ _css }}
-</style>
+html,
+body,
+p,
+ol,
+ul,
+li,
+dl,
+dt,
+dd,
+blockquote,
+figure,
+fieldset,
+legend,
+textarea,
+pre,
+iframe,
+hr,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  padding: 0;
+}
 
+* {
+  box-sizing: inherit;
+}
+
+.container {
+  margin: 0 auto;
+  position: relative;
+  max-width: 960px;
+}
+
+.columns {
+  display: flex; //margin-left: -0.75rem;
+  //margin-right: -0.75rem;
+  margin-top: -0.75rem;
+}
+
+.column {
+  display: block;
+  -ms-flex-preferred-size: 0;
+  flex-basis: 0;
+  -webkit-box-flex: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+  -ms-flex-negative: 1;
+  flex-shrink: 1;
+}
+
+.columns:not(:last-child) {
+  margin-bottom: calc(1.5rem - 0.75rem);
+}
+
+.is-pulled-right {
+  float: right !important;
+}
+
+.is-pulled-left {
+  float: left !important;
+}
+
+.column.is-1 {
+  -webkit-box-flex: 0;
+  -ms-flex: none;
+  flex: none;
+  width: 8.33333%;
+}
+
+span {
+  font-style: inherit;
+  font-weight: inherit;
+}
+
+*:before,
+*:after {
+  -webkit-box-sizing: inherit;
+  box-sizing: inherit;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+td,
+th {
+  padding: 0;
+  text-align: left;
+}
+
+.content.is-small {
+  font-size: 0.75rem;
+}
+
+.content.is-medium {
+  font-size: 1.25rem;
+}
+
+.content.is-large {
+  font-size: 1.5rem;
+}
+</style>
 <style>
 html,
 body {
-  font-family: Courier;
+  font-family: Courier New;
   margin: 12px;
   line-height: 1;
   color: black !important;
   font-size: 11px;
-  //font-weight: bold !important;
+  font-weight: 500 !important;
 }
 
 .area {
@@ -35,7 +139,7 @@ body {
 
 .chave {
   height: 33px;
-  font-size: 88%;
+  font-size: 82%;
   font-weight: bold;
   text-align: center;
 }
@@ -46,20 +150,22 @@ body {
   padding: 2px;
 }
 
+.protocolo {
+  flex: 0 0 296px;
+}
+
 .codigo_barra,
-.consulta,
 .chave {
   border-bottom: 1px solid black;
 }
 
 .consulta {
-  font-size: 9px;
+  font-size: 10px;
   text-align: center;
 }
 
 .quadro_danfe {
   flex: 0 0 96px;
-  height: 149px;
   line-height: 1.1;
 }
 
@@ -67,6 +173,10 @@ body {
   flex: 0 0 378px;
   font-weight: bold;
   font-size: 13px
+}
+
+.quadro_cabecalho {
+  height: 149px !important;
 }
 
 div.quadro div.columns:nth-child(2) {
@@ -84,7 +194,10 @@ div.quadro div.columns:first-child div.column {
 .quadro .linha div.column {
   border-bottom: 1px solid black;
   border-right: 1px solid black;
-  padding: 2px;
+}
+
+.conteudo_campo {
+  padding: 0 0 0 2px;
 }
 
 .quadro.imposto div.linha div.column div:nth-child(2),
@@ -92,8 +205,7 @@ div.quadro div.columns:first-child div.column {
   text-align: right;
 }
 
-.quadro div.columns:first-child div.column,
-.canhoto_nr {
+.quadro div.columns:first-child div.column {
   margin-top: 5px;
 }
 
@@ -101,10 +213,21 @@ div.quadro div.columns:first-child div.column {
   height: 33px;
 }
 
+.grupo {
+  margin-top: 5px;
+}
+
 .tcampo {
   font-weight: bold;
-  font-size: 7px;
+  font-size: 8px;
   padding-bottom: 2px;
+  padding-left: 2px;
+  text-align: left;
+}
+
+.texto_recibo {
+  font-weight: bold;
+  font-size: 9px;
   text-align: left;
 }
 
@@ -137,9 +260,6 @@ div.quadro div.columns:first-child div.column {
   font-size: 10px;
 }
 
-.complemento {
-  font-size: 9px;
-}
 
 .data {
   flex: 0 0 100px;
@@ -160,14 +280,25 @@ div.quadro div.columns:first-child div.column {
 
 .fisco {
   flex: 0 0 284px;
-  height: 114px;
+}
+
+.complemento {
+  height: 114px !important;
+}
+
+.complemento {
+  font-size: 10px;
 }
 
 .canhoto_nr {
   flex: 0 0 171px;
-  height: 66px;
-  border: 1px solid black;
+}
+
+.area_canhoto_nr {
+  height: 65px;
+  border-left: 0px !important;
   line-height: 1.5;
+  padding-left: 3px !important;
 }
 
 .canhoto_assinatura {
@@ -179,11 +310,17 @@ div.quadro div.columns:first-child div.column {
   text-align: center;
   padding-right: 3px;
   padding-left: 3px;
+
   border-right: 1px solid gray;
+}
+
+.duplicatas .duplicata div {
+  margin-top: 2px;
 }
 
 .duplicatas .tcampo {
   font-size: 0.8rem;
+  margin-top: 1px;
 }
 
 table td,
@@ -212,7 +349,8 @@ table {
           </div>
           <div class="columns linha">
             <div class="column campo">
-              <div class="tcampo">RECEBEMOS DE '{{emitente.nome}}' OS PRODUTOS E/OU SERVIÇOS CONSTANTES DA NOTA FISCAL ELETRÔNICA INDICADA ABAIXO. EMISSÃO: {{data_emissao}} - VALOR TOTAL: {{total_nota}} - DESTINATÁRIO: {{destinatario.nome}} - ENDEREÇO: {{destinatario.endereco}}, {{destinatario.numero}}, {{destinatario.bairro}} - {{destinatario.municipio}}/{{destinatario.uf}}
+              <div class="texto_recibo conteudo_campo">
+                RECEBEMOS DE '{{emitente.nome}}' OS PRODUTOS E/OU SERVIÇOS CONSTANTES DA NOTA FISCAL ELETRÔNICA INDICADA ABAIXO. EMISSÃO: {{data_emissao}} - VALOR TOTAL: {{total_nota}} - DESTINATÁRIO: {{destinatario.nome}} - ENDEREÇO: {{destinatario.endereco}}, {{destinatario.numero}}, {{destinatario.bairro}} - {{destinatario.municipio}}/{{destinatario.uf}}
               </div>
             </div>
           </div>
@@ -226,31 +364,41 @@ table {
           </div>
         </div>
       </div>
-      <div class="column canhoto_nr ">
-        <div class=" center">NF-e</div>
-        <div class="">Nº {{numero}}</div>
-        <div class="">SÉRIE: {{serie}}</div>
+      <div class="column canhoto_nr">
+        <div class="quadro">
+          <div class="columns">
+            <div class="column ">
+            </div>
+          </div>
+          <div class="columns  linha">
+            <div class="column  area_canhoto_nr">
+              <div class="center">NF-e</div>
+              <div class="">Nº {{numero}}</div>
+              <div class="">SÉRIE: {{serie}}</div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
     <!-- Cabeçalho  -->
-    <div class="columns">
+    <div class="columns grupo">
       <div class="column ">
         <div class="quadro">
           <div class="columns">
             <div class="column ">
             </div>
           </div>
-          <div class="columns linha">
+          <div class="columns linha quadro_cabecalho">
             <div class="column  quadro_identificacao">
-              <div class="is-medium">{{emitente.nome}}</div>
-              <div class="s-6">{{emitente.fantasia}}</div>
-              <div>{{emitente.endereco}}, {{emitente.numero}}</div>
-              <div>{{emitente.complemento}}</div>
-              <div>{{emitente.bairro}} - {{emitente.municipio}} / {{emitente.uf}}</div>
-              <div>CEP:{{emitente.cep}} - Fone: {{emitente.telefone}}</div>
+              <div class="conteudo_campo">{{emitente.nome}}</div>
+              <div class="conteudo_campo">{{emitente.fantasia}}</div>
+              <div class="conteudo_campo">{{emitente.endereco}}, {{emitente.numero}}</div>
+              <div class="conteudo_campo">{{emitente.complemento}}</div>
+              <div class="conteudo_campo">{{emitente.bairro}} - {{emitente.municipio}} / {{emitente.uf}}</div>
+              <div class="conteudo_campo">CEP:{{emitente.cep}} - Fone: {{emitente.telefone}}</div>
             </div>
             <div class="column quadro_danfe">
-              <div class="center nold danfe">DANFE</div>
+              <div class="center danfe">DANFE</div>
               <div class="center">DOCUMENTO AUXILIAR DA NOTA FISCAL ELETRÔNICA</div>
               <br>
               <span class="numero center">
@@ -270,12 +418,8 @@ table {
                 {{chave}}
               </div>
               <div class="consulta">
-                Consulta de autenticidade no portal nacional da NF-e
+                <br> Consulta de autenticidade no portal nacional da NF-e
                 <span style="text-decoration: underline">www.nfe.fazenda.gov.br/portal</span> ou no site da Sefaz Autorizadora
-              </div>
-              <div class="protocolo center">
-                <div class="tcampo">PROTOCOLO DE AUTORIZACAO DE USO </div>
-                {{protocolo}} - {{data_protocolo}}
               </div>
             </div>
           </div>
@@ -292,24 +436,25 @@ table {
           <div class="columns linha">
             <div class="column campo">
               <div class="tcampo">NATUREZA DA OPERAÇÃO</div>
-              {{natureza}}
+              <span class="conteudo_campo">{{natureza}}</span>
             </div>
-            <div class="column">
-              <div class="tcampo"></div>
+            <div class="column protocolo center">
+              <div class="tcampo">PROTOCOLO DE AUTORIZACAO DE USO </div>
+              <span class="conteudo_campo">{{protocolo}} - {{data_protocolo}}</span>
             </div>
           </div>
           <div class="columns linha">
             <div class="column">
               <div class="tcampo">INSCRIÇÃO ESTADUAL</div>
-              {{emitente.ie}}
+              <span class="conteudo_campo">{{emitente.ie}}</span>
             </div>
             <div class="column">
               <div class="tcampo">INSCRIÇÃO ESTADUAL DO SUBST. TRIB.</div>
-              {{emitente.ie_st}}
+              <span class="conteudo_campo">{{emitente.ie_st}}</span>
             </div>
             <div class="column">
               <div class="tcampo">C.N.P.J.</div>
-              {{emitente.inscricao_nacional}}
+              <span class="conteudo_campo">{{emitente.inscricao_nacional}}</span>
             </div>
           </div>
         </div>
@@ -327,61 +472,62 @@ table {
           <div class="columns linha">
             <div class="column ">
               <div class="tcampo">NOME/RAZÃO SOCIAL</div>
-              {{destinatario.nome}}
+              <span class="conteudo_campo">{{destinatario.nome}}</span>
             </div>
             <div class="column ">
               <div class="tcampo">C.N.P.J./C.P.F.</div>
-              {{destinatario.inscricao_nacional}}
+              <span class="conteudo_campo">{{destinatario.inscricao_nacional}}</span>
             </div>
             <div class="column data">
               <div class="tcampo">DATA DA EMISSÃO</div>
-              {{data_emissao}}
+              <span class="conteudo_campo">{{data_emissao}}</span>
             </div>
           </div>
           <div class="columns linha">
             <div class="column">
               <div class="tcampo">ENDEREÇO</div>
-              {{destinatario.endereco}}, {{destinatario.numero}}
+              <span class="conteudo_campo">{{destinatario.endereco}}, {{destinatario.numero}}</span>
             </div>
             <div class="column ">
               <div class="tcampo ">BAIRRO/DISTRITO</div>
-              {{destinatario.bairro}}
+              <span class="conteudo_campo">{{destinatario.bairro}}</span>
             </div>
             <div class="column ">
               <div class="tcampo">CEP</div>
-              {{destinatario.cep}}
+              <span class="conteudo_campo">{{destinatario.cep}}</span>
             </div>
             <div class="column data">
-              <div class="tcampo">DATA DA SAÍDA/ENTRADA</div>
-              {{data_saida}}
+              <div class="tcampo">DATA SAÍDA/ENTRADA</div>
+              <span class="conteudo_campo">{{data_saida}}</span>
             </div>
           </div>
           <div class="columns linha">
             <div class="column">
               <div class="tcampo">MUNICÍPIO</div>
-              {{destinatario.municipio}}
+              <span class="conteudo_campo">{{destinatario.municipio}}</span>
             </div>
             <div class="column">
               <div class="tcampo">FONE/FAX</div>
-              {{destinatario.telefone}}
+              <span class="conteudo_campo">{{destinatario.telefone}}</span>
             </div>
             <div class="column uf">
               <div class="tcampo">UF</div>
-              {{destinatario.uf}}
+              <span class="conteudo_campo">{{destinatario.uf}}</span>
             </div>
             <div class="column">
               <div class="tcampo">INSCRIÇÃO ESTADUAL</div>
-              {{destinatario.ie}}
+              <span class="conteudo_campo">{{destinatario.ie}}</span>
             </div>
             <div class="column data">
               <div class="tcampo">HORA DA SAÍDA</div>
-              {{hora_saida}}
+              <span class="conteudo_campo">{{hora_saida}}</span>
             </div>
           </div>
         </div>
       </div>
     </div>
     <!-- Faturas  -->
+    {{#if duplicatas}}
     <div class="columns grupo">
       <div class="column ">
         <div class="quadro duplicatas">
@@ -409,6 +555,7 @@ table {
         </div>
       </div>
     </div>
+    {{/if}}
     <!-- Impostos  -->
     <div class="columns grupo">
       <div class="column ">
@@ -485,78 +632,78 @@ table {
           <div class="columns linha">
             <div class="column nome">
               <div class="tcampo">RAZÃO SOCIAL</div>
-              {{transportador.nome}}
+              <span class="conteudo_campo">{{transportador.nome}}</span>
             </div>
             <div class="column">
               <div class="tcampo">FRETE POR CONTA DO</div>
-              {{modalidade_frete}} - {{modalidade_frete_texto}}
+              <span class="conteudo_campo">{{modalidade_frete}} - {{modalidade_frete_texto}}</span>
             </div>
             <div class="column">
               <div class="tcampo">CÓDIGO ANTT</div>
-              {{veiculo_antt}}
+              <span class="conteudo_campo">{{veiculo_antt}}</span>
             </div>
             <div class="column placa">
               <div class="tcampo">PLACA DO VEÍCULO</div>
-              {{veiculo_placa}}
+              <span class="conteudo_campo">{{veiculo_placa}}</span>
             </div>
             <div class="column uf">
               <div class="tcampo">UF</div>
-              {{veiculo_placa_uf}}
+              <span class="conteudo_campo">{{veiculo_placa_uf}}</span>
             </div>
             <div class="column">
               <div class="tcampo">C.N.P.J./C.P.F.</div>
-              {{transportador.inscricao_nacional}}
+              <span class="conteudo_campo">{{transportador.inscricao_nacional}}</span>
             </div>
           </div>
           <div class="columns linha">
             <div class="column">
               <div class="tcampo">ENDEREÇO</div>
-              {{transportador.endereco}}, {{transportador.numero}}
+              <span class="conteudo_campo">{{transportador.endereco}}, {{transportador.numero}}</span>
             </div>
             <div class="column">
               <div class="tcampo">MUNICÍPIO</div>
-              {{transportador.municipio}}
+              <span class="conteudo_campo">{{transportador.municipio}}</span>
             </div>
             <div class="column uf">
               <div class="tcampo">UF</div>
-              {{transportador.uf}}
+              <span class="conteudo_campo">{{transportador.uf}}</span>
             </div>
             <div class="column">
               <div class="tcampo">INSCRIÇÃO ESTADUAL</div>
-              {{transportador.ie}}
+              <span class="conteudo_campo">{{transportador.ie}}</span>
             </div>
           </div>
           <div class="columns linha">
             <div class="column direita">
               <div class="tcampo">QUANTIDADE</div>
-              {{volume_quantidade}}
+              <span class="conteudo_campo">{{volume_quantidade}}</span>
             </div>
             <div class="column">
               <div class="tcampo">ESPÉCIE</div>
-              {{volume_especie}}
+              <span class="conteudo_campo">{{volume_especie}}</span>
             </div>
             <div class="column">
               <div class="tcampo">MARCA</div>
-              {{volume_marca}}
+              <span class="conteudo_campo">{{volume_marca}}</span>
             </div>
             <div class="column">
               <div class="tcampo">NUMERAÇÃO</div>
-              {{volume_numeracao}}
+              <span class="conteudo_campo">{{volume_numeracao}}</span>
             </div>
             <div class="column direita">
               <div class="tcampo">PESO BRUTO</div>
-              {{volume_pesoBruto}}
+              <span class="conteudo_campo">{{volume_pesoBruto}}</span>
             </div>
             <div class="column direita">
               <div class="tcampo">PESO LÍQUIDO</div>
-              {{volume_pesoLiquido}}
+              <span class="conteudo_campo">{{volume_pesoLiquido}}</span>
             </div>
           </div>
         </div>
       </div>
     </div>
     <!-- Itens  -->
-    <div class="columns">
+    <div class="columns grupo">
       <div class="column ">
         <div class="quadro">
           <div class="columns">
@@ -624,19 +771,19 @@ table {
           <div class="columns linha">
             <div class="column">
               <div class="tcampo">INSCRIÇÃO MUNICIPAL</div>
-              {{inscricao_municipal}}
+              <span class="conteudo_campo">{{inscricao_municipal}}</span>
             </div>
             <div class="column">
               <div class="tcampo">VALOR TOTAL DOS SERVIÇOS</div>
-              {{total_servico}}
+              <div class="conteudo_campo direita">{{total_servico}}</div>
             </div>
             <div class="column">
               <div class="tcampo">BASE DE CÁLCULO DO ISSQN</div>
-              {{base_calculo_issqn}}
+              <div class="conteudo_campo direita">{{base_calculo_issqn}}</div>
             </div>
             <div class="column">
               <div class="tcampo">VALOR DO ISSQN</div>
-              {{total_issqn}}
+              <div class="conteudo_campo direita">{{total_issqn}}</div>
             </div>
           </div>
         </div>
@@ -644,7 +791,7 @@ table {
     </div>
     {{/if}}
     <!-- Dados adicionais  -->
-    <div class="columns">
+    <div class="columns grupo">
       <div class="column ">
         <div class="quadro">
           <div class="columns">
@@ -655,9 +802,9 @@ table {
           <div class="columns linha complemento">
             <div class="column">
               <div class="tcampo">INFORMAÇÕES COMPLEMENTARES</div>
-              <div>{{informacoes_fisco}}</div>
-              <div>{{informacoes_complementares}}</div>
-              <div>{{observacao}}</div>
+              <span class="conteudo_campo">{{informacoes_fisco}}</span>
+              <span class="conteudo_campo">{{informacoes_complementares}}</span>
+              <span class="conteudo_campo">{{observacao}}</span>
             </div>
             <div class="column fisco">
               <div class="tcampo">RESERVADO AO FISCO</div>

@@ -33,19 +33,18 @@ console.log(danfe.toHtml())
 * Criar representação do DANFE em html baseado somente em um arquivo XML existente.
 * Criar a representação somente no formato retrato.
 
-### Não oferece
+### Limitações
 
-* Conversão para outros formatos como pdf e imagens (basta usar um conversor externo, ex.: [node-wkhtmltopdf](https://github.com/devongovett/node-wkhtmltopdf)).
-* Validação dos valores dos campos da NFE.
-* (TODO) Contagem do número de folhas.
-* (TODO) Geração do código de barras.
-* (TODO) Quebra do número de folhas de acordo com a quantidade de itens.
-* (TODO) Criar a representação em formato paisagem.
+* Não converte para outros formatos como pdf e imagens (basta usar um conversor externo, ex.: [node-wkhtmltopdf](https://github.com/devongovett/node-wkhtmltopdf)).
+* Não valida os valores dos campos da NFE.
+* (TODO) Não possui contagem do número de folhas.
+* (TODO) Não possui geração do código de barras.
+* (TODO) Não possui quebra do número de folhas de acordo com a quantidade de itens.
+* (TODO) Não possui a representação em formato paisagem.
 
 ### Arquitetura
 
 * Usa [template engine handlebars](https://github.com/wycats/handlebars.js) para gerar o html.
-* Layout baseado no [framework css bulma](https://github.com/jgthms/bulma/).
 
 ## Testes
 
@@ -71,4 +70,4 @@ npm run test
 
 ## Licença
 
-[MIT](LICENSE)
+[MIT](https://github.com/djalmaoliveira/djf-danfe/blob/master/LICENSE)

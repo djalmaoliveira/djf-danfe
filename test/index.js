@@ -35,6 +35,7 @@ module.exports.from = function (test) {
   test.ok(html.indexOf(expectedNumero) !== -1)
 
   fs.writeFileSync(pathTemp + '.html', html)
+  // fs.writeFileSync('tmp/html' + '.html', html)
 
   test.done()
 }
