@@ -277,8 +277,6 @@ function renderHtml (data) {
   if (!data) {
     return ''
   }
-  var cssPath = path.normalize(require.resolve('djf-nfe') + '/../../../') + 'bulma-dist/css/bulma.css'
-  data._css = fs.readFileSync(cssPath, 'utf8')
   var template = fs.readFileSync(TEMPLATE_DANFE, 'utf8')
   return handlebars.compile(template)(data)
 }
